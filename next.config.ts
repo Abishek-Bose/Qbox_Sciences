@@ -10,7 +10,13 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       {
+        // Uploads served by Payload's Media collection.
         pathname: '/api/media/file/**',
+      },
+      {
+        // Static art shipped with the app (e.g. the homepage hero).
+        // Without this entry next/image rejects /public paths with a 400.
+        pathname: '/images/**',
       },
     ],
   },
