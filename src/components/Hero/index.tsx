@@ -17,7 +17,6 @@ export type HeroProps = {
   titleAccent: string
   description: string
   primaryCta: CTA
-  secondaryCta?: CTA
   image: {
     src: string
     alt: string
@@ -35,7 +34,6 @@ export const Hero: React.FC<HeroProps> = ({
   titleAccent,
   description,
   primaryCta,
-  secondaryCta,
   image,
   credential,
 }) => {
@@ -59,8 +57,8 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="max-w-xl">
           {eyebrow && (
             <Reveal immediate>
-              <p className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand">
-                <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5">
+              <p className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-base font-semibold uppercase tracking-[0.14em] text-brand">
+                <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-6 w-6">
                   <path
                     d="M3 2h10v3.2a2 2 0 0 1-.5 1.3L10 9.5V14H6V9.5L3.5 6.5A2 2 0 0 1 3 5.2V2Z"
                     stroke="currentColor"
@@ -80,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({
           </Reveal>
 
           <Reveal immediate delay={0.16}>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-ink-muted">{description}</p>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted">{description}</p>
           </Reveal>
 
           <Reveal immediate delay={0.24} className="mt-10 flex flex-wrap items-center gap-4">
@@ -90,32 +88,6 @@ export const Hero: React.FC<HeroProps> = ({
             >
               {primaryCta.label}
             </Link>
-
-            {/* A text link, not a second button — the arrow carries it. Two solid
-                buttons side by side compete; one primary plus one quiet link
-                keeps the hierarchy clear. */}
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                className="group ml-4 inline-flex items-center gap-2 text-[15px] font-semibold text-brand transition-colors hover:text-brand-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-              >
-                {secondaryCta.label}
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                >
-                  <path
-                    d="M3 10h13M11 5l5 5-5 5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            )}
           </Reveal>
         </div>
 

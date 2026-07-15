@@ -23,14 +23,9 @@ export default function HomePage() {
         titleAccent="Critical Illness"
         description="Science that supports recovery. Solutions that restore well-being. Our commitment lies in developing transformative therapies for life-threatening conditions."
         primaryCta={{ label: 'Contact Us', href: '/contact' }}
-        secondaryCta={{ label: 'Know More', href: '/science' }}
         image={{
           src: '/images/hero.png',
           alt: 'A nurse holding the hands of an older patient in a bright clinical room',
-        }}
-        credential={{
-          title: 'Peer Reviewed',
-          body: 'Over 150 clinical publications in prestigious medical journals.',
         }}
       />
 

@@ -52,7 +52,7 @@ export const Navbar = () => {
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-surface/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-navy-dark backdrop-blur-sm">
       {/* h-20 (80px): the logo is a stacked lockup — wordmark above "sciences" —
           and goes unreadable in a shorter bar. Keep in sync with the Hero's
           `calc(100svh-5rem)`. */}
@@ -60,7 +60,7 @@ export const Navbar = () => {
         <Link
           href="/"
           aria-label="Qbox Sciences — home"
-          className="inline-flex items-center rounded-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy"
+          className="inline-flex items-center rounded-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
         >
           {/*
             Declared at ~2x the rendered size (it displays 112x48 via h-12),
@@ -88,9 +88,9 @@ export const Navbar = () => {
                   <Link
                     href={href}
                     aria-current={active ? 'page' : undefined}
-                    className={`relative block py-1 text-[15px] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-navy ${
-                      active ? 'font-semibold text-navy' : 'text-navy/75 hover:text-navy'
-                    } after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:bg-navy after:transition-transform ${
+                    className={`relative block py-1 text-[15px] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5] ${
+                      active ? 'font-semibold text-[#6FDBF5]' : 'text-[#6FDBF5] hover:text-[#6FDBF5]'
+                    } after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:bg-[#6FDBF5] after:transition-transform ${
                       active ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
                     }`}
                   >
@@ -109,7 +109,7 @@ export const Navbar = () => {
             aria-expanded={isOpen}
             aria-controls={menuId}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-card text-navy transition-colors hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy lg:hidden"
+            className="-mr-2 flex h-11 w-11 items-center justify-center rounded-card text-[#6FDBF5] transition-colors hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6FDBF5] lg:hidden"
           >
             <span aria-hidden="true" className="relative block h-4 w-6">
               {/* Three bars that fold into an X. Positions are absolute so the
@@ -155,8 +155,8 @@ export const Navbar = () => {
                     aria-current={active ? 'page' : undefined}
                     className={`block border-l-2 py-3 pl-4 text-base transition-colors ${
                       active
-                        ? 'border-navy bg-white font-semibold text-navy'
-                        : 'border-transparent text-navy/75 hover:border-navy hover:text-navy'
+                        ? 'border-[#6FDBF5] bg-white font-semibold text-[#6FDBF5]'
+                        : 'border-transparent text-[#6FDBF5] hover:border-[#6FDBF5] hover:text-[#6FDBF5]'
                     }`}
                   >
                     {label}
