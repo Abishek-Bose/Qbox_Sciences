@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 export type Feature = {
   icon: React.ReactNode
@@ -12,16 +13,24 @@ export type FeatureGridProps = {
   title: string
   intro?: string
   features: Feature[]
+  watermark?: WatermarkSide
 }
 
-export const FeatureGrid: React.FC<FeatureGridProps> = ({ title, intro, features }) => {
+export const FeatureGrid: React.FC<FeatureGridProps> = ({
+  title,
+  intro,
+  features,
+  watermark = 'left',
+}) => {
   return (
-    <section className="bg-white py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-white py-20 lg:py-28">
+      <Watermark side={watermark} />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-brand sm:text-4xl">{title}</h2>
 
-          {intro && <p className="mt-6 text-base leading-relaxed text-ink-muted">{intro}</p>}
+          {intro && <p className="mt-6 text-xl leading-relaxed text-ink-muted">{intro}</p>}
         </Reveal>
 
         {/*
@@ -44,9 +53,9 @@ export const FeatureGrid: React.FC<FeatureGridProps> = ({ title, intro, features
                 {icon}
               </span>
 
-              <h3 className="mt-8 text-lg font-bold text-brand">{cardTitle}</h3>
+              <h3 className="mt-8 text-2xl font-bold text-brand">{cardTitle}</h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-ink-muted">{body}</p>
+              <p className="mt-4 text-xl leading-relaxed text-ink-muted">{body}</p>
             </Reveal>
           ))}
         </ul>

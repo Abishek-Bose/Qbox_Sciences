@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-import { MailIcon, NetworkIcon } from '@/components/icons'
+import { MailIcon, YouTubeIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
 
 type FooterColumn = {
@@ -24,10 +24,6 @@ const COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    heading: 'Corporate',
-    links: [{ label: 'Ethical Standards', href: '/ethics' }],
-  },
-  {
     heading: 'Resources',
     links: [
       { label: 'Privacy Policy', href: '/privacy' },
@@ -37,9 +33,31 @@ const COLUMNS: FooterColumn[] = [
   },
 ]
 
-const TAGLINE =
-  'Redefining outcomes for the critically ill through relentless scientific innovation.'
-const STRAPLINE = 'Precise Care, Proven Science.'
+/**
+ * Contact details. `office` renders under the wordmark in the first column;
+ * `email` heads the Contact Us column — kept in one constant so both stay in
+ * step when the details change.
+ */
+const CONTACT = {
+  heading: 'Contact Us',
+  office: {
+    label: 'Head Office',
+    name: 'Qbox Sciences Pvt. Ltd.',
+    lines: ['A 18/14 Srijoni,', 'MG Road, Kolkata – 700104', 'West Bengal, India'],
+  },
+  email: {
+    label: 'Email Us',
+    address: 'qboxsciences@gmail.com',
+  },
+}
+
+/**
+ * TODO: still the placeholder handle. The Resources page hardcodes the same URL
+ * in its own `YOUTUBE_CHANNEL` — update both when the real channel exists.
+ */
+const YOUTUBE_CHANNEL = 'https://www.youtube.com/@qboxsciences'
+
+const STRAPLINE = 'Precision in Critical Illness.'
 
 export const Footer = () => {
   // Computed, not hardcoded: a literal "2024" silently goes stale every January.
@@ -50,17 +68,40 @@ export const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal y={16} className="max-w-xs">
-            {/* Desaturated so the mark reads as a quiet sign-off rather than
-                competing with the navbar's full-colour logo. */}
+            {/*
+              `brightness-0` renders the mark solid black. The source logo is
+              light cyan — built for the dark navbar — and a plain `grayscale`
+              of it lands on pale grey, which all but vanishes on this white
+              footer. Black is the monochrome treatment that actually reads.
+              Sized to h-14, a little larger than the navbar's h-12.
+            */}
             <Image
               src="/images/logo.png"
               alt="Qbox Sciences"
               width={234}
               height={100}
-              className="h-11 w-auto opacity-60 grayscale"
+              className="h-14 w-auto brightness-0"
             />
 
-            <p className="mt-6 text-sm leading-relaxed text-ink-muted">{TAGLINE}</p>
+            {/* The legal name sits directly under the wordmark — the two identify
+                the company — with the office address beneath. <address> is the
+                right element; browsers italicise it by default, hence not-italic. */}
+            <address className="mt-6 not-italic">
+              <p className="text-xl font-semibold text-ink">{CONTACT.office.name}</p>
+
+              <p className="mt-4 text-base font-medium text-navy">{CONTACT.office.label}</p>
+
+              <p className="mt-1 text-xl leading-relaxed text-ink-muted">
+                {CONTACT.office.lines.map((line) => (
+                  // Each line is its own row, but they are one paragraph — a <ul>
+                  // would have a screen reader announce a three-item list.
+                  <React.Fragment key={line}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))}
+              </p>
+            </address>
           </Reveal>
 
           {COLUMNS.map(({ heading, links }, index) => (
@@ -74,7 +115,7 @@ export const Footer = () => {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="text-sm font-medium text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:text-brand hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                      className="text-base font-medium text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:text-brand hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
                     >
                       {label}
                     </Link>
@@ -83,6 +124,25 @@ export const Footer = () => {
               </ul>
             </Reveal>
           ))}
+
+          {/* Picks up where the link columns' stagger left off, so the row still
+              reads as one movement across. */}
+          <Reveal y={16} delay={0.08 + COLUMNS.length * 0.08}>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-brand">
+              {CONTACT.heading}
+            </h2>
+
+            <address className="mt-6 not-italic">
+              <p className="text-base font-medium text-navy">{CONTACT.email.label}</p>
+
+              <a
+                href={`mailto:${CONTACT.email.address}`}
+                className="mt-2 inline-block text-base font-medium text-navy underline decoration-navy/30 underline-offset-4 transition-colors hover:text-brand hover:decoration-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+              >
+                {CONTACT.email.address}
+              </a>
+            </address>
+          </Reveal>
         </div>
 
         {/* column-reverse on mobile so the icons sit above the legal line rather
@@ -94,17 +154,21 @@ export const Footer = () => {
 
           <ul className="flex items-center gap-2">
             <li>
+              {/* Opens in its own tab, and `noopener` stops the channel page
+                  reaching back here through `window.opener`. */}
               <a
-                href="https://qboxsciences.com"
-                aria-label="Qbox Sciences website"
+                href={YOUTUBE_CHANNEL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Qbox Sciences on YouTube"
                 className="flex size-10 items-center justify-center rounded-card text-ink-muted transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
-                <NetworkIcon className="size-5" />
+                <YouTubeIcon className="size-5" />
               </a>
             </li>
             <li>
               <a
-                href="mailto:info@qboxsciences.com"
+                href={`mailto:${CONTACT.email.address}`}
                 aria-label="Email Qbox Sciences"
                 className="flex size-10 items-center justify-center rounded-card text-ink-muted transition-colors hover:bg-brand/10 hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >

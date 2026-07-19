@@ -19,6 +19,7 @@ const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Therapy Areas', href: '/therapy-areas' },
   { label: 'Scientific Resources', href: '/resources' },
+  { label: 'Careers', href: '/careers' },
 ]
 
 export const Navbar = () => {
@@ -89,7 +90,9 @@ export const Navbar = () => {
                     href={href}
                     aria-current={active ? 'page' : undefined}
                     className={`relative block py-1 text-[15px] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5] ${
-                      active ? 'font-semibold text-[#6FDBF5]' : 'text-[#6FDBF5] hover:text-[#6FDBF5]'
+                      active
+                        ? 'font-semibold text-[#6FDBF5]'
+                        : 'text-[#6FDBF5] hover:text-[#6FDBF5]'
                     } after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:bg-[#6FDBF5] after:transition-transform ${
                       active ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
                     }`}

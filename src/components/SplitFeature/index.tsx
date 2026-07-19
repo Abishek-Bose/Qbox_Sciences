@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 type Media = {
   src: string
@@ -26,6 +27,7 @@ export type SplitFeatureProps = {
    * missing photo degrades to a brand-tinted block rather than a broken layout.
    */
   media?: [Media?, Media?]
+  watermark?: WatermarkSide
 }
 
 const MediaTile: React.FC<{ media?: Media; className?: string; priority?: boolean }> = ({
@@ -54,22 +56,30 @@ const MediaTile: React.FC<{ media?: Media; className?: string; priority?: boolea
   </div>
 )
 
-export const SplitFeature: React.FC<SplitFeatureProps> = ({ title, items, link, media }) => {
+export const SplitFeature: React.FC<SplitFeatureProps> = ({
+  title,
+  items,
+  link,
+  media,
+  watermark = 'right',
+}) => {
   const [first, second] = media ?? []
 
   return (
-    <section className="bg-surface py-20 lg:py-28">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
-        {/* The offset pair: the second tile drops below the baseline of the
-            first, which is what keeps the collage from reading as a plain
-            two-up grid. */}
-        <div className="grid grid-cols-2 items-start gap-5">
+    <section className="relative overflow-hidden bg-surface py-20 lg:py-28">
+      <Watermark side={watermark} />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+        {/* Both tiles share a baseline and an equal height — `items-stretch` (the
+            grid default) plus a shared aspect ratio on the tiles themselves. */}
+        <div className="grid grid-cols-2 gap-5">
           <Reveal>
             <MediaTile media={first} priority />
           </Reveal>
 
-          {/* The trailing tile arrives a beat later, reinforcing the offset. */}
-          <Reveal delay={0.12} className="mt-8 lg:mt-12">
+          {/* The trailing tile still arrives a beat later, so the pair reads as
+              one movement rather than two. */}
+          <Reveal delay={0.12}>
             <MediaTile media={second} />
           </Reveal>
         </div>
@@ -87,8 +97,8 @@ export const SplitFeature: React.FC<SplitFeatureProps> = ({ title, items, link, 
                 delay={0.1 + index * 0.1}
                 className="border-l-[3px] border-teal pl-5"
               >
-                <h3 className="text-lg font-bold text-brand">{itemTitle}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{body}</p>
+                <h3 className="text-2xl font-bold text-brand">{itemTitle}</h3>
+                <p className="mt-2 text-xl leading-relaxed text-ink-muted">{body}</p>
               </Reveal>
             ))}
           </ul>

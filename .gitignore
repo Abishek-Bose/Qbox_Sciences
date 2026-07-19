@@ -42,6 +42,9 @@ next-env.d.ts
 
 /media
 
+# Uploaded CVs — personal data, never committed.
+/resumes
+
 # Playwright
 node_modules/
 /test-results/

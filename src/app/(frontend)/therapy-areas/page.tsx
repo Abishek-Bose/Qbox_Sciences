@@ -1,12 +1,6 @@
 import React from 'react'
 
-import {
-  DropletIcon,
-  FlaskIcon,
-  LeafIcon,
-  MonitorIcon,
-  SparkIcon,
-} from '@/components/icons'
+import { DropletIcon, FlaskIcon, LeafIcon, MonitorIcon, SparkIcon } from '@/components/icons'
 import { PageHero } from '@/components/PageHero'
 import { TherapySection } from '@/components/TherapySection'
 
@@ -29,10 +23,12 @@ export default function TherapyAreasPage() {
         }}
       />
 
+      {/* The mark alternates down the page: hero right, then left, right, left. */}
       <TherapySection
+        watermark="left"
         icon={<FlaskIcon className="size-5" />}
         title="Immune Modulation"
-        body="Immune modulation is a key therapeutic focus for us. We are building a science-led portfolio of pharmaceuticals and evidence-backed natural bioactives that help restore immune balance, supporting better patient outcomes across a wide range of acute and chronic conditions."
+        body="Our Immune Modulation portfolio is focused on restoring balance to the body’s immune response through science-driven therapies. From critical care to chronic inflammatory conditions, we aim to support clinicians with advanced solutions that help regulate immune activity, reduce excessive inflammation, and improve patient outcomes. By combining innovation, precision, and clinical relevance, we strive to address complex immune-related challenges across diverse therapeutic areas."
         bullets={[
           'Cytokine Storm Suppression (CSS) technology.',
           'Adaptive immune response stabilization.',
@@ -57,11 +53,12 @@ export default function TherapyAreasPage() {
       />
 
       <TherapySection
+        watermark="right"
         tinted
         mediaSide="left"
         icon={<SparkIcon className="size-5" />}
         title="Critical Care Medicine"
-        body="Our critical care portfolio is built on the highest standards of quality, scientific rigor, and manufacturing excellence. Every product is designed to deliver dependable performance in the moments when patients need it most. With an unwavering commitment to clinical reliability and patient safety, we strive to be a trusted partner to healthcare professionals in the most demanding care environments."
+        body="Our Critical Care portfolio is dedicated to supporting healthcare professionals in managing life-threatening and complex medical conditions with confidence and precision. We focus on delivering high-quality, evidence-based therapies for intensive care settings, addressing key areas such as severe infections, respiratory support, sedation, emergency care, and organ support. Through innovation and reliability, we aim to improve outcomes when every moment matters."
         media={{
           src: '/images/therapy_areas/therapy_room.png',
           alt: 'An intensive care room with a bed surrounded by monitoring and ventilation equipment',
@@ -93,9 +90,10 @@ export default function TherapyAreasPage() {
       {/* Same layout as Immune Modulation: copy left, cards above a plain
           (un-overlaid) image on the right. */}
       <TherapySection
+        watermark="left"
         icon={<LeafIcon className="size-5" />}
         title="Wellness"
-        body="We are building a science-backed wellness portfolio that combines clinically validated nutraceuticals with the power of nature to support preventive health and long-term well-being. Our focus is on evidence-based formulations that help people live healthier, stronger, and more resilient lives."
+        body="We envision a future where wellness is an integral part of healthcare, not an afterthought. At Qbox Sciences, we curate innovative, science-driven solutions that help individuals optimize health, enhance resilience, and improve quality of life. By bridging global research with practical healthcare needs, we strive to empower healthier living across every stage of the wellness journey."
         cardsFirst
         media={{
           src: '/images/therapy_areas/capsul.png',

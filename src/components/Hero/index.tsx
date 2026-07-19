@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark } from '@/components/Watermark'
 
 type CTA = {
   label: string
@@ -39,16 +40,9 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   return (
     <section className="relative overflow-hidden bg-surface">
-      {/*
-        The Q motive as an ambient watermark. Painted as a CSS background rather
-        than next/image on purpose: the optimizer rejects SVG unless you enable
-        `dangerouslyAllowSVG`, and that flag is not worth turning on for a piece
-        of decoration. It is decoration, not content — aria-hidden and inert.
-      */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-32 hidden size-184 select-none bg-[url('/images/q-motive.svg')] bg-contain bg-no-repeat opacity-[0.07] lg:block"
-      />
+      {/* The hero opens the alternating rhythm on the right; each section below
+          flips it. */}
+      <Watermark side="right" position="top" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-28">
         {/* Above the fold, so these play on mount (`immediate`) rather than

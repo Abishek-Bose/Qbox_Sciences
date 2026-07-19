@@ -3,6 +3,7 @@ import React from 'react'
 
 import { AnimationIcon, PlayIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 export type Webinar = {
   title: string
@@ -27,6 +28,7 @@ export type WebinarSectionProps = {
       alt: string
     }
   }
+  watermark?: WatermarkSide
 }
 
 /**
@@ -42,14 +44,17 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
   channelUrl,
   ctaLabel,
   feature,
+  watermark = 'right',
 }) => {
   return (
-    <section className="bg-surface py-20 lg:py-24">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+    <section className="relative overflow-hidden bg-surface py-20 lg:py-24">
+      <Watermark side={watermark} />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         <div className="max-w-lg">
           <Reveal>
-            <h2 className="text-2xl font-bold tracking-tight text-navy">{title}</h2>
-            <p className="mt-4 text-sm leading-relaxed text-ink-muted">{description}</p>
+            <h2 className="text-3xl font-bold tracking-tight text-navy">{title}</h2>
+            <p className="mt-4 text-xl leading-relaxed text-ink-muted">{description}</p>
           </Reveal>
 
           <ul className="mt-10 space-y-6">
@@ -66,10 +71,10 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
                   </span>
 
                   <span className="block">
-                    <span className="block text-sm font-semibold text-navy transition-colors group-hover:text-brand">
+                    <span className="block text-xl font-semibold text-navy transition-colors group-hover:text-brand">
                       {webinarTitle}
                     </span>
-                    <span className="mt-1 block text-xs text-ink-muted">{meta}</span>
+                    <span className="mt-1 block text-base text-ink-muted">{meta}</span>
                   </span>
                 </a>
               </Reveal>

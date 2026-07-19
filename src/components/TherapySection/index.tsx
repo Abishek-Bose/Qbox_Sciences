@@ -4,6 +4,7 @@ import React from 'react'
 
 import { CheckCircleIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 export type TherapyCard = {
   icon?: React.ReactNode
@@ -43,6 +44,7 @@ export type TherapySectionProps = {
   /** Cards above the image instead of below it. */
   cardsFirst?: boolean
   tinted?: boolean
+  watermark?: WatermarkSide
 }
 
 export const TherapySection: React.FC<TherapySectionProps> = ({
@@ -57,6 +59,7 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
   mediaSide = 'right',
   cardsFirst = false,
   tinted = false,
+  watermark = 'left',
 }) => {
   const mediaLeft = mediaSide === 'left'
 
@@ -71,8 +74,8 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
         >
           {cardIcon && <span className="block text-brand">{cardIcon}</span>}
 
-          <h3 className="mt-4 text-sm font-semibold text-brand">{cardTitle}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-ink-muted">{cardBody}</p>
+          <h3 className="mt-4 text-2xl font-semibold text-brand">{cardTitle}</h3>
+          <p className="mt-2 text-xl leading-relaxed text-ink-muted">{cardBody}</p>
         </Reveal>
       ))}
     </ul>
@@ -112,7 +115,7 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
               {media.overlay.eyebrow}
             </p>
             <p className="mt-3 text-2xl font-bold text-white">{media.overlay.title}</p>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/70">
+            <p className="mt-3 max-w-md text-xl leading-relaxed text-white/70">
               {media.overlay.body}
             </p>
           </div>
@@ -122,8 +125,12 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
   )
 
   return (
-    <section className={tinted ? 'bg-surface py-20 lg:py-28' : 'bg-white py-20 lg:py-28'}>
-      <div className="mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+    <section
+      className={`relative overflow-hidden py-20 lg:py-28 ${tinted ? 'bg-surface' : 'bg-white'}`}
+    >
+      <Watermark side={watermark} />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
         {/* Copy is always first in the DOM so the reading order stays sane; only
             the visual order flips. */}
         <div className={mediaLeft ? 'lg:order-2' : undefined}>
@@ -133,12 +140,12 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
                 {icon}
               </span>
 
-              <h2 className="text-2xl font-bold tracking-tight text-navy">{title}</h2>
+              <h2 className="text-3xl font-bold tracking-tight text-navy">{title}</h2>
             </div>
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="mt-6 text-sm leading-relaxed text-ink-muted">{body}</p>
+            <p className="mt-6 text-xl leading-relaxed text-ink-muted">{body}</p>
           </Reveal>
 
           {bullets && bullets.length > 0 && (
@@ -151,8 +158,8 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
                   delay={0.16 + index * 0.08}
                   className="flex items-start gap-3"
                 >
-                  <CheckCircleIcon className="mt-0.5 size-4 shrink-0 text-teal" />
-                  <span className="text-sm text-ink-muted">{bullet}</span>
+                  <CheckCircleIcon className="mt-1.5 size-5 shrink-0 text-teal" />
+                  <span className="text-xl text-ink-muted">{bullet}</span>
                 </Reveal>
               ))}
             </ul>
@@ -161,7 +168,7 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
           {quote && (
             <Reveal delay={0.16}>
               <blockquote className="mt-8 rounded-card border-l-[3px] border-brand bg-brand/5 p-6">
-                <p className="text-sm italic leading-relaxed text-ink-muted">“{quote.text}”</p>
+                <p className="text-xl italic leading-relaxed text-ink-muted">“{quote.text}”</p>
                 <footer className="mt-3 text-xs font-semibold text-brand">— {quote.author}</footer>
               </blockquote>
             </Reveal>

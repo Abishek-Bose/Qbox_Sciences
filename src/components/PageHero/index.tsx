@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark } from '@/components/Watermark'
 
 export type PageHeroCta = {
   label: string
@@ -70,10 +71,8 @@ export const PageHero: React.FC<PageHeroProps> = ({
 
   return (
     <section className="relative overflow-hidden bg-white">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-40 hidden size-160 select-none bg-[url('/images/q-motive.svg')] bg-contain bg-no-repeat opacity-[0.07] lg:block"
-      />
+      {/* Page heroes open the alternating rhythm on the right. */}
+      <Watermark side="right" position="top" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-24">
         <div className="max-w-xl">
@@ -93,7 +92,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
           </Reveal>
 
           <Reveal immediate delay={0.16}>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-ink-muted">{description}</p>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted">{description}</p>
           </Reveal>
 
           {(primaryCta || secondaryCta) && (

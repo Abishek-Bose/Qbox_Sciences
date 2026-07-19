@@ -3,6 +3,7 @@ import React from 'react'
 
 import { PdfIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
+import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 export type LiteratureItem = {
   /** Short kind label shown as a chip, e.g. "Clinical Study". */
@@ -23,16 +24,25 @@ export type LiteratureGridProps = {
     href: string
   }
   items: LiteratureItem[]
+  watermark?: WatermarkSide
 }
 
-export const LiteratureGrid: React.FC<LiteratureGridProps> = ({ title, subtitle, link, items }) => {
+export const LiteratureGrid: React.FC<LiteratureGridProps> = ({
+  title,
+  subtitle,
+  link,
+  items,
+  watermark = 'left',
+}) => {
   return (
-    <section className="bg-surface py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-surface py-20 lg:py-24">
+      <Watermark side={watermark} />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-navy">{title}</h2>
-            {subtitle && <p className="mt-2 text-sm text-ink-muted">{subtitle}</p>}
+            <h2 className="text-3xl font-bold tracking-tight text-navy">{title}</h2>
+            {subtitle && <p className="mt-2 text-xl text-ink-muted">{subtitle}</p>}
           </div>
 
           {link && (
@@ -74,11 +84,11 @@ export const LiteratureGrid: React.FC<LiteratureGridProps> = ({ title, subtitle,
                 <span className="text-xs text-ink-muted">{date}</span>
               </div>
 
-              <h3 className="mt-5 text-lg font-semibold leading-snug text-navy">{itemTitle}</h3>
+              <h3 className="mt-5 text-2xl font-semibold leading-snug text-navy">{itemTitle}</h3>
 
               {/* flex-1 pushes the button down, so every Download PDF button
                   lands on the same baseline however long the title runs. */}
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{body}</p>
+              <p className="mt-3 flex-1 text-xl leading-relaxed text-ink-muted">{body}</p>
 
               <Link
                 href={href}

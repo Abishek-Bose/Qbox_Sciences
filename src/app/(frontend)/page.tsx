@@ -1,17 +1,9 @@
 import React from 'react'
 
-import { CalloutGrid } from '@/components/CalloutGrid'
+import { AboutSection } from '@/components/AboutSection'
 import { FeatureGrid } from '@/components/FeatureGrid'
 import { Hero } from '@/components/Hero'
-import {
-  AnimationIcon,
-  ChartIcon,
-  DocumentIcon,
-  InnovationIcon,
-  IntegrityIcon,
-  WebinarIcon,
-} from '@/components/icons'
-import { SplitFeature } from '@/components/SplitFeature'
+import { DocumentIcon, EyeIcon, InnovationIcon, IntegrityIcon, TargetIcon } from '@/components/icons'
 import './styles.css'
 
 export default function HomePage() {
@@ -29,7 +21,9 @@ export default function HomePage() {
         }}
       />
 
+      {/* The mark alternates down the page: hero right, then left, right. */}
       <FeatureGrid
+        watermark="left"
         title="Science-Driven Philosophy"
         intro="Qbox Sciences stands at the intersection of biological innovation and clinical application. We believe that true medical progress is achieved through rigid empirical evidence and a deep understanding of cellular pathology."
         features={[
@@ -51,54 +45,25 @@ export default function HomePage() {
         ]}
       />
 
-      <SplitFeature
-        title="Therapy Focus"
-        items={[
-          {
-            title: 'Immune Modulation',
-            body: 'Developing precision therapies that recalibrate the immune response during acute inflammatory storms, preventing organ failure and systemic collapse.',
-          },
-          {
-            title: 'Critical Care Medicine',
-            body: 'Targeting the unique metabolic and physiological needs of patients in intensive care environments through innovative drug delivery systems.',
-          },
+      <AboutSection
+        watermark="right"
+        title="About Us"
+        paragraphs={[
+          'Founded in 2026, Qbox Sciences Pvt. Ltd. was built on a singular vision — to advance healthcare through innovation, scientific thinking, and meaningful clinical collaboration.',
+          'At Qbox Sciences, we believe that the future of healthcare lies in identifying real-world medical gaps and developing creative, outcome-driven solutions that truly make a difference in patient care. Backed by a passionate leadership team and a strong scientific foundation, we are committed to delivering high-quality pharmaceutical and healthcare solutions tailored to evolving clinical needs.',
+          'Our integrated approach brings us closer to clinicians, healthcare professionals, and patients, enabling us to support therapies that contribute to better treatment outcomes and improved quality of life.',
+          'Driven by integrity, innovation, and patient-centricity, we aspire to emerge as a trusted and leading force in the Indian pharmaceutical and healthcare industry.',
         ]}
-        link={{ label: 'View Therapeutic Pipeline', href: '/pipeline' }}
-        media={[
-          { src: '/images/otroom.png', alt: 'An operating theatre prepared for a procedure' },
-          { src: '/images/vial.png', alt: 'Backlit glass vials of an injectable therapy' },
-        ]}
-      />
-
-      <CalloutGrid
-        title="Scientific Resources for Professionals"
-        description="Access our digital library of clinical white papers, mechanism of action videos, and latest trial data updates designed for healthcare professionals and researchers."
-        primaryCta={{ label: 'Access Resource Portal', href: '/resources' }}
-        secondaryCta={{ label: 'Request Medical Info', href: '/contact' }}
-        cards={[
+        statements={[
           {
-            icon: <DocumentIcon className="size-5" />,
-            title: 'Clinical Protocol v.4',
-            body: 'A comprehensive guide to critical care integration.',
-            href: '/resources/clinical-protocol',
+            icon: <EyeIcon className="size-5" />,
+            title: 'Our Vision',
+            body: 'To establish ourselves as the leading integrated hospital pharmaceutical company, converging diverse therapeutic verticals into a unified product ecosystem that addresses the full spectrum of institutional healthcare needs.',
           },
           {
-            icon: <AnimationIcon className="size-5" />,
-            title: 'MOA Animation',
-            body: 'Visualizing molecular pathway modulation.',
-            href: '/resources/moa-animation',
-          },
-          {
-            icon: <ChartIcon className="size-5" />,
-            title: 'Q3 Trial Data',
-            body: 'Preliminary results of immune-mod therapy.',
-            href: '/resources/q3-trial-data',
-          },
-          {
-            icon: <WebinarIcon className="size-5" />,
-            title: 'Webinar Series',
-            body: 'Expert discussions on critical illness science.',
-            href: '/resources/webinars',
+            icon: <TargetIcon className="size-5" />,
+            title: 'Our Mission',
+            body: 'To build a hospital-focused pharmaceutical portfolio grounded in clinical guidelines and robust evidence, delivering best-in-class products that support physician decision-making and drive faster, deeper market penetration in institutional care settings.',
           },
         ]}
       />

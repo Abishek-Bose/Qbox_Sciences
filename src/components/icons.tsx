@@ -158,3 +158,29 @@ export const MailIcon: React.FC<IconProps> = ({ className }) => (
     <path d="m3.5 6.5 8.5 6 8.5-6" />
   </svg>
 )
+
+export const EyeIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="M2.6 12S6.4 5.8 12 5.8 21.4 12 21.4 12 17.6 18.2 12 18.2 2.6 12 2.6 12Z" />
+    <circle cx="12" cy="12" r="3.1" />
+  </svg>
+)
+
+export const TargetIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <circle cx="12" cy="12" r="8.5" />
+    <circle cx="12" cy="12" r="4.8" />
+    <circle cx="12" cy="12" r="1.4" />
+  </svg>
+)
+
+/**
+ * Outlined rather than YouTube's solid brand mark: it sits beside `MailIcon` in
+ * the footer, and a filled glyph next to a stroked one reads as a weight error.
+ */
+export const YouTubeIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17Z" />
+    <path d="m10 15 5-3-5-3z" />
+  </svg>
+)

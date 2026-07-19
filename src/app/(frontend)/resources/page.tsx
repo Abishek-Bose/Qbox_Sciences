@@ -3,6 +3,7 @@ import React from 'react'
 import { CheckCircleIcon, DownloadIcon, PlayIcon } from '@/components/icons'
 import { LiteratureGrid } from '@/components/LiteratureGrid'
 import { PageHero } from '@/components/PageHero'
+import { ProseIntro } from '@/components/ProseIntro'
 import { WebinarSection } from '@/components/WebinarSection'
 
 export const metadata = {
@@ -29,8 +30,9 @@ export default function ResourcesPage() {
           src: '/images/scientific_resources/fliter_tube.png',
           alt: 'Backlit laboratory glassware — a separating funnel and graduated tubes on a lit stand',
         }}
-        // Single container here, unlike Therapy Areas' padded white matte.
-        frame="plain"
+        // Padded white matte, as on Therapy Areas — every interior hero frames
+        // its photo the same way.
+        frame="matte"
         aspect="wide"
         primaryCta={{
           label: 'Browse Library',
@@ -44,8 +46,18 @@ export default function ResourcesPage() {
         }}
       />
 
+      {/* The mark alternates down the page: hero right, then left, right, left. */}
+      <ProseIntro
+        watermark="left"
+        paragraphs={[
+          'At Qbox Sciences Pvt. Ltd., we are dedicated to creating a comprehensive platform of scientific knowledge and healthcare innovation. Our resources are designed to support researchers, clinicians, academicians, students, and healthcare professionals across multiple scientific disciplines.',
+          'To ensure quality and credibility, our content is curated from reputed academic institutions, peer-reviewed journals, and trusted scientific experts. Explore our platform to stay informed, enhance your expertise, and contribute to the advancement of healthcare and science.',
+        ]}
+      />
+
       <div id="latest-literature">
         <LiteratureGrid
+          watermark="right"
           title="Latest Literature"
           subtitle="Recently published studies and clinical updates."
           link={{ label: 'View Archive', href: '/resources/archive' }}
@@ -77,6 +89,7 @@ export default function ResourcesPage() {
 
       <div id="webinars">
         <WebinarSection
+          watermark="left"
           title="Expert Webinars & Insights"
           description="Watch leading medical experts discuss the latest therapeutic breakthroughs, clinical trial results, and future directions in biotechnology."
           channelUrl={YOUTUBE_CHANNEL}
