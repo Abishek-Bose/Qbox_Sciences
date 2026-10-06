@@ -16,7 +16,8 @@ export type PageHeroProps = {
   eyebrow?: string
   eyebrowIcon?: React.ReactNode
   title: string
-  description: string
+  /** One paragraph, or several — each string in an array is its own paragraph. */
+  description: string | string[]
   image?: {
     src: string
     alt: string
@@ -48,6 +49,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   secondaryCta,
 }) => {
   const aspectClass = aspect === 'wide' ? 'aspect-3/2' : 'aspect-square'
+  const paragraphs = Array.isArray(description) ? description : [description]
 
   const media = (
     <div className={`relative overflow-hidden rounded-xl ${aspectClass}`}>
@@ -92,7 +94,16 @@ export const PageHero: React.FC<PageHeroProps> = ({
           </Reveal>
 
           <Reveal immediate delay={0.16}>
-            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted">{description}</p>
+            {paragraphs.map((paragraph, index) => (
+              <p
+                key={paragraph}
+                className={`max-w-2xl text-xl leading-relaxed text-ink-muted ${
+                  index === 0 ? 'mt-6' : 'mt-4'
+                }`}
+              >
+                {paragraph}
+              </p>
+            ))}
           </Reveal>
 
           {(primaryCta || secondaryCta) && (

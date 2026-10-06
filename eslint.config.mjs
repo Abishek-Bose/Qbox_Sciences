@@ -1,16 +1,13 @@
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
-
-const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+// eslint-config-next 16 ships native flat configs. Loading them through
+// FlatCompat, as the Payload template did, crashes ESLint before it lints
+// anything ("Converting circular structure to JSON").
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
   {
     rules: {
       '@typescript-eslint/ban-ts-comment': 'warn',
@@ -30,9 +27,7 @@ const eslintConfig = [
       ],
     },
   },
-  {
-    ignores: ['.next/', 'src/payload-types.ts', 'src/payload-generated-schema.ts'],
-  },
-]
+  globalIgnores(['.next/', 'src/payload-types.ts', 'src/payload-generated-schema.ts']),
+])
 
 export default eslintConfig

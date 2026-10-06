@@ -3,15 +3,13 @@ import React from 'react'
 import { CareersApply } from '@/components/CareersApply'
 import { IntegrityIcon } from '@/components/icons'
 import { PageHero } from '@/components/PageHero'
+import { COMPANY } from '@/lib/site'
 
 export const metadata = {
-  title: 'Careers — Qbox Sciences',
+  title: 'Careers – Qbox Sciences',
   description:
     'Build a meaningful career in the pharmaceutical and healthcare industry with Qbox Sciences.',
 }
-
-/** Also the address in the Footer — applications and enquiries share an inbox. */
-const CAREERS_EMAIL = 'qboxsciences@gmail.com'
 
 export default function CareersPage() {
   return (
@@ -20,7 +18,7 @@ export default function CareersPage() {
         eyebrow="Join Our Team"
         eyebrowIcon={<IntegrityIcon className="size-3.5" />}
         title="Careers"
-        description="At Qbox Sciences, our greatest strength lies in the passion, talent, and dedication of our people. We are committed to providing a positive and knowledge-driven environment that supports both personal and professional growth."
+        description="At Qbox Sciences, our greatest strength lies in the passion, talent, and dedication of our people. We are committed to providing a positive and knowledge–driven environment that supports both personal and professional growth."
         image={{
           src: '/images/career/team.png',
           alt: 'Three researchers in white lab coats leaning over a bench, discussing notes beside a rack of test tubes',
@@ -39,7 +37,8 @@ export default function CareersPage() {
             'If you are looking to build a meaningful career in the pharmaceutical and healthcare industry, we would love to hear from you.',
           ]}
           emailLabel="Send your resume to"
-          email={CAREERS_EMAIL}
+          // Also the address in the Footer: applications and enquiries share an inbox.
+          email={COMPANY.email}
           note="Our team will connect with you whenever a suitable opportunity matching your profile becomes available."
         />
       </div>

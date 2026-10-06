@@ -75,7 +75,10 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
           {cardIcon && <span className="block text-brand">{cardIcon}</span>}
 
           <h3 className="mt-4 text-2xl font-semibold text-brand">{cardTitle}</h3>
-          <p className="mt-2 text-xl leading-relaxed text-ink-muted">{cardBody}</p>
+          {/* pre-line: a `\n` in the body starts a new line, for short lists. */}
+          <p className="mt-2 whitespace-pre-line text-xl leading-relaxed text-ink-muted">
+            {cardBody}
+          </p>
         </Reveal>
       ))}
     </ul>
@@ -169,7 +172,7 @@ export const TherapySection: React.FC<TherapySectionProps> = ({
             <Reveal delay={0.16}>
               <blockquote className="mt-8 rounded-card border-l-[3px] border-brand bg-brand/5 p-6">
                 <p className="text-xl italic leading-relaxed text-ink-muted">“{quote.text}”</p>
-                <footer className="mt-3 text-xs font-semibold text-brand">— {quote.author}</footer>
+                <footer className="mt-3 text-xs font-semibold text-brand">– {quote.author}</footer>
               </blockquote>
             </Reveal>
           )}

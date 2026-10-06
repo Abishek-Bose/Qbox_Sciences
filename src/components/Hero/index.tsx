@@ -17,7 +17,8 @@ export type HeroProps = {
   /** Rendered in teal, closing the blue-to-teal colour run. */
   titleAccent: string
   description: string
-  primaryCta: CTA
+  /** Omit it and the hero closes on the description, with no button. */
+  primaryCta?: CTA
   image: {
     src: string
     alt: string
@@ -75,14 +76,16 @@ export const Hero: React.FC<HeroProps> = ({
             <p className="mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted">{description}</p>
           </Reveal>
 
-          <Reveal immediate delay={0.24} className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href={primaryCta.href}
-              className="inline-flex items-center rounded-card bg-navy px-7 py-4 text-[15px] font-semibold leading-none text-white transition-colors hover:bg-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-            >
-              {primaryCta.label}
-            </Link>
-          </Reveal>
+          {primaryCta && (
+            <Reveal immediate delay={0.24} className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                href={primaryCta.href}
+                className="inline-flex items-center rounded-card bg-navy px-7 py-4 text-[15px] font-semibold leading-none text-white transition-colors hover:bg-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+              >
+                {primaryCta.label}
+              </Link>
+            </Reveal>
+          )}
         </div>
 
         {/* Padded so the credential card can hang off the image without being

@@ -184,3 +184,29 @@ export const YouTubeIcon: React.FC<IconProps> = ({ className }) => (
     <path d="m10 15 5-3-5-3z" />
   </svg>
 )
+
+export const MapPinIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21Z" />
+    <circle cx="12" cy="9.5" r="2.5" />
+  </svg>
+)
+
+export const CloseIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="m6 6 12 12" />
+    <path d="m18 6-12 12" />
+  </svg>
+)
+
+export const ChevronLeftIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="m15 5-7 7 7 7" />
+  </svg>
+)
+
+export const ChevronRightIcon: React.FC<IconProps> = ({ className }) => (
+  <svg {...base} className={className}>
+    <path d="m9 5 7 7-7 7" />
+  </svg>
+)

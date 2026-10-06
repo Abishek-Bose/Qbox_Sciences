@@ -7,26 +7,28 @@ import { Watermark, type WatermarkSide } from '@/components/Watermark'
 
 export type Webinar = {
   title: string
-  /** Supporting line, e.g. "Featuring Dr. Elena Rossi • 45 mins". */
-  meta: string
-  /** Individual video URL. Falls back to the channel when omitted. */
-  href?: string
+  /** Supporting line, e.g. the channel that published the video. */
+  meta?: string
+  /** The video's own URL. */
+  href: string
 }
 
 export type WebinarSectionProps = {
   title: string
   description: string
+  /** The list beside the feature tile. */
   webinars: Webinar[]
-  /** The YouTube channel. Every play affordance here points at it. */
-  channelUrl: string
-  ctaLabel: string
-  feature: {
-    title: string
-    meta: string
+  /** The video given the large tile. */
+  feature: Webinar & {
     image?: {
       src: string
       alt: string
     }
+  }
+  /** Optional button under the list, e.g. to a channel. Omit it when there is nowhere to send people. */
+  cta?: {
+    label: string
+    href: string
   }
   watermark?: WatermarkSide
 }
@@ -34,16 +36,15 @@ export type WebinarSectionProps = {
 /**
  * Every video affordance is an external anchor to YouTube — not a Next `Link`
  * and not an embedded player. `target="_blank"` with `rel="noopener noreferrer"`
- * so the channel opens in its own tab and cannot reach back into this page
+ * so the video opens in its own tab and cannot reach back into this page
  * via `window.opener`.
  */
 export const WebinarSection: React.FC<WebinarSectionProps> = ({
   title,
   description,
   webinars,
-  channelUrl,
-  ctaLabel,
   feature,
+  cta,
   watermark = 'right',
 }) => {
   return (
@@ -59,9 +60,9 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
 
           <ul className="mt-10 space-y-6">
             {webinars.map(({ title: webinarTitle, meta, href }, index) => (
-              <Reveal key={webinarTitle} as="li" y={12} delay={0.1 + index * 0.1}>
+              <Reveal key={href} as="li" y={12} delay={0.1 + index * 0.1}>
                 <a
-                  href={href ?? channelUrl}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-start gap-4 rounded-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
@@ -74,31 +75,33 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
                     <span className="block text-xl font-semibold text-navy transition-colors group-hover:text-brand">
                       {webinarTitle}
                     </span>
-                    <span className="mt-1 block text-base text-ink-muted">{meta}</span>
+                    {meta && <span className="mt-1 block text-base text-ink-muted">{meta}</span>}
                   </span>
                 </a>
               </Reveal>
             ))}
           </ul>
 
-          <Reveal delay={0.3}>
-            <a
-              href={channelUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-10 inline-flex items-center rounded-card bg-navy px-7 py-3.5 text-sm font-semibold leading-none text-white transition-colors hover:bg-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-            >
-              {ctaLabel}
-            </a>
-          </Reveal>
+          {cta && (
+            <Reveal delay={0.3}>
+              <a
+                href={cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-10 inline-flex items-center rounded-card bg-navy px-7 py-3.5 text-sm font-semibold leading-none text-white transition-colors hover:bg-navy-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+              >
+                {cta.label}
+              </a>
+            </Reveal>
+          )}
         </div>
 
         <Reveal y={32}>
           <a
-            href={channelUrl}
+            href={feature.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${feature.title} — watch on YouTube`}
+            aria-label={`${feature.title} – watch on YouTube`}
             className="group relative block aspect-video overflow-hidden rounded-card shadow-xl shadow-navy/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             {feature.image ? (
@@ -132,7 +135,9 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
 
             <span className="absolute inset-x-0 bottom-0 block p-6">
               <span className="block text-sm font-semibold text-white">{feature.title}</span>
-              <span className="mt-1 block text-xs text-white/70">{feature.meta}</span>
+              {feature.meta && (
+                <span className="mt-1 block text-xs text-white/70">{feature.meta}</span>
+              )}
             </span>
           </a>
         </Reveal>

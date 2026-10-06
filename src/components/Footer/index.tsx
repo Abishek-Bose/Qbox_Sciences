@@ -4,6 +4,7 @@ import React from 'react'
 
 import { MailIcon, YouTubeIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
+import { COMPANY } from '@/lib/site'
 
 type FooterColumn = {
   heading: string
@@ -19,8 +20,8 @@ const COLUMNS: FooterColumn[] = [
     heading: 'Scientific Portals',
     links: [
       { label: 'Therapy Areas', href: '/therapy-areas' },
-      { label: 'Pipeline Overview', href: '/pipeline' },
-      { label: 'Clinical Trials', href: '/clinical-trials' },
+      { label: 'Scientific Resources', href: '/resources' },
+      { label: 'Events', href: '/events' },
     ],
   },
   {
@@ -34,26 +35,25 @@ const COLUMNS: FooterColumn[] = [
 ]
 
 /**
- * Contact details. `office` renders under the wordmark in the first column;
- * `email` heads the Contact Us column — kept in one constant so both stay in
- * step when the details change.
+ * Contact details, drawn from the shared COMPANY constant so the Footer, the
+ * Contact page and Careers cannot drift apart. `office` renders under the
+ * wordmark in the first column; `email` heads the Contact Us column.
  */
 const CONTACT = {
   heading: 'Contact Us',
   office: {
-    label: 'Head Office',
-    name: 'Qbox Sciences Pvt. Ltd.',
-    lines: ['A 18/14 Srijoni,', 'MG Road, Kolkata – 700104', 'West Bengal, India'],
+    label: COMPANY.office.label,
+    name: COMPANY.name,
+    lines: COMPANY.office.lines,
   },
   email: {
     label: 'Email Us',
-    address: 'qboxsciences@gmail.com',
+    address: COMPANY.email,
   },
 }
 
 /**
- * TODO: still the placeholder handle. The Resources page hardcodes the same URL
- * in its own `YOUTUBE_CHANNEL` — update both when the real channel exists.
+ * TODO: still the placeholder handle — update it when the real channel exists.
  */
 const YOUTUBE_CHANNEL = 'https://www.youtube.com/@qboxsciences'
 
@@ -69,18 +69,16 @@ export const Footer = () => {
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <Reveal y={16} className="max-w-xs">
             {/*
-              `brightness-0` renders the mark solid black. The source logo is
-              light cyan — built for the dark navbar — and a plain `grayscale`
-              of it lands on pale grey, which all but vanishes on this white
-              footer. Black is the monochrome treatment that actually reads.
-              Sized to h-14, a little larger than the navbar's h-12.
+              The client's original logo. It is drawn for a white ground, so it
+              needs no treatment on this footer. Sized to h-16, a little larger
+              than the navbar's h-13.
             */}
             <Image
-              src="/images/logo.png"
+              src="/images/logo-original.png"
               alt="Qbox Sciences"
-              width={234}
-              height={100}
-              className="h-14 w-auto brightness-0"
+              width={285}
+              height={112}
+              className="h-16 w-auto"
             />
 
             {/* The legal name sits directly under the wordmark — the two identify
