@@ -48,7 +48,7 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
   watermark = 'right',
 }) => {
   return (
-    <section className="relative overflow-hidden bg-surface py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-white py-20 lg:py-24">
       <Watermark side={watermark} />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
@@ -101,7 +101,7 @@ export const WebinarSection: React.FC<WebinarSectionProps> = ({
             href={feature.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${feature.title} – watch on YouTube`}
+            aria-label={`${feature.title} watch on YouTube`}
             className="group relative block aspect-video overflow-hidden rounded-card shadow-xl shadow-navy/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             {feature.image ? (

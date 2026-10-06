@@ -14,7 +14,7 @@ const linkByText = (container: HTMLElement, text: string) =>
 
 describe('ContactPage', () => {
   it('has the expected title and header copy', () => {
-    expect(metadata.title).toBe('Contact Us – Qbox Sciences')
+    expect(metadata.title).toBe('Contact Us Qbox Sciences')
     const container = render(<ContactPage />)
     expect(container.querySelector('h1')?.textContent).toBe('Contact Us')
     expect(container.textContent).toContain('Get in Touch')
