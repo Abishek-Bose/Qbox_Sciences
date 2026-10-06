@@ -28,6 +28,8 @@ export type PageHeroProps = {
    */
   frame?: 'matte' | 'plain'
   aspect?: 'square' | 'wide'
+  /** The faint blue-grey wash of the homepage hero, instead of plain white. */
+  tinted?: boolean
   primaryCta?: PageHeroCta
   secondaryCta?: PageHeroCta
 }
@@ -45,6 +47,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   image,
   frame = 'matte',
   aspect = 'square',
+  tinted = false,
   primaryCta,
   secondaryCta,
 }) => {
@@ -72,7 +75,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   )
 
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className={`relative overflow-hidden ${tinted ? 'bg-surface' : 'bg-white'}`}>
       {/* Page heroes open the alternating rhythm on the right. */}
       <Watermark side="right" position="top" />
 
