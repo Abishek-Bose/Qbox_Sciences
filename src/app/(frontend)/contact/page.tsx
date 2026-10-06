@@ -5,7 +5,7 @@ import { PageHeader } from '@/components/PageHeader'
 import { COMPANY } from '@/lib/site'
 
 export const metadata = {
-  title: 'Contact Us – Qbox Sciences',
+  title: 'Contact Us Qbox Sciences',
   description:
     'Contact Qbox Sciences for product, partnership and general enquiries. Find our head office address and email.',
 }

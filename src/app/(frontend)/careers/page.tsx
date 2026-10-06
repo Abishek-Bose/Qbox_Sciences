@@ -6,7 +6,7 @@ import { PageHero } from '@/components/PageHero'
 import { COMPANY } from '@/lib/site'
 
 export const metadata = {
-  title: 'Careers – Qbox Sciences',
+  title: 'Careers Qbox Sciences',
   description:
     'Build a meaningful career in the pharmaceutical and healthcare industry with Qbox Sciences.',
 }
@@ -18,7 +18,7 @@ export default function CareersPage() {
         eyebrow="Join Our Team"
         eyebrowIcon={<IntegrityIcon className="size-3.5" />}
         title="Careers"
-        description="At Qbox Sciences, our greatest strength lies in the passion, talent, and dedication of our people. We are committed to providing a positive and knowledge–driven environment that supports both personal and professional growth."
+        description="At Qbox Sciences, our greatest strength lies in the passion, talent, and dedication of our people. We are committed to providing a positive and knowledge driven environment that supports both personal and professional growth."
         image={{
           src: '/images/career/team.png',
           alt: 'Three researchers in white lab coats leaning over a bench, discussing notes beside a rack of test tubes',

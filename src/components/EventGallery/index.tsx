@@ -165,14 +165,14 @@ export const EventGallery: React.FC<EventGalleryProps> = ({
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={`${album.title} – photo ${open.photo + 1} of ${album.photos.length}`}
+            aria-label={`${album.title} photo ${open.photo + 1} of ${album.photos.length}`}
             tabIndex={-1}
             onClick={(event) => event.stopPropagation()}
             className="flex max-h-full w-full max-w-5xl flex-col items-center gap-4 outline-none"
           >
             <div className="flex w-full items-center justify-between gap-4 text-white">
               <p className="text-sm font-semibold">
-                {album.title} – {open.photo + 1} of {album.photos.length}
+                {album.title} {open.photo + 1} of {album.photos.length}
               </p>
               <button type="button" onClick={close} className={controlClass}>
                 <CloseIcon className="size-5" />

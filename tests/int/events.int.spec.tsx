@@ -224,7 +224,7 @@ describe('EventGallery', () => {
     expect(document.activeElement).toBe(close)
   })
 
-  it('marks both controls as at an end for a one–photo album', () => {
+  it('marks both controls as at an end for a one photo album', () => {
     const { thumbs } = setup()
 
     // The last thumbnail is the older album's only photo.

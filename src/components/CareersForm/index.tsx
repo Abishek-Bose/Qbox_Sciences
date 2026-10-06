@@ -60,7 +60,7 @@ export const CareersForm: React.FC = () => {
           <CheckCircleIcon className="size-5" />
         </span>
 
-        <h3 className="mt-6 text-2xl font-bold text-brand">Thank you – we have your application</h3>
+        <h3 className="mt-6 text-2xl font-bold text-brand">Thank you we have your application</h3>
 
         <p className="mt-4 text-xl leading-relaxed text-ink-muted">
           Our team will connect with you whenever a suitable opportunity matching your profile

@@ -6,7 +6,7 @@ import { PageHeader } from '@/components/PageHeader'
 import { ANNOUNCEMENTS, EVENT_ALBUMS } from '@/content/events'
 
 export const metadata = {
-  title: 'Events – Qbox Sciences',
+  title: 'Events Qbox Sciences',
   description: 'Photographs and announcements from Qbox Sciences events and scientific programmes.',
 }
 
