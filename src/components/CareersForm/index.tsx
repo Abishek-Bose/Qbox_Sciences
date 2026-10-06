@@ -15,6 +15,21 @@ const fieldShell =
 
 const labelShell = 'block text-left text-sm font-semibold text-navy'
 
+/**
+ * A field's validation message; renders nothing while the field is valid.
+ * Declared out here rather than inside the form: a component defined during
+ * render is a new type every time, so React would remount it on each keystroke.
+ */
+const FieldError: React.FC<{ id: string; error?: string }> = ({ id, error }) => {
+  if (!error) return null
+
+  return (
+    <p id={id} className="mt-2 text-left text-sm font-medium text-red-700">
+      {error}
+    </p>
+  )
+}
+
 export const CareersForm: React.FC = () => {
   const [state, formAction, isPending] = useActionState(submitApplication, APPLY_INITIAL_STATE)
   const formId = useId()
@@ -34,17 +49,6 @@ export const CareersForm: React.FC = () => {
     }
   }
 
-  const FieldError: React.FC<{ name: ApplyFieldError }> = ({ name }) => {
-    const error = errorFor(name)
-    if (!error) return null
-
-    return (
-      <p id={errorId(name)} className="mt-2 text-left text-sm font-medium text-red-700">
-        {error}
-      </p>
-    )
-  }
-
   if (state.status === 'success') {
     return (
       <div
@@ -56,7 +60,7 @@ export const CareersForm: React.FC = () => {
           <CheckCircleIcon className="size-5" />
         </span>
 
-        <h3 className="mt-6 text-2xl font-bold text-brand">Thank you — we have your application</h3>
+        <h3 className="mt-6 text-2xl font-bold text-brand">Thank you – we have your application</h3>
 
         <p className="mt-4 text-xl leading-relaxed text-ink-muted">
           Our team will connect with you whenever a suitable opportunity matching your profile
@@ -103,7 +107,7 @@ export const CareersForm: React.FC = () => {
             className={fieldShell}
             {...errorProps('fullName')}
           />
-          <FieldError name="fullName" />
+          <FieldError id={errorId('fullName')} error={errorFor('fullName')} />
         </div>
 
         <div>
@@ -120,7 +124,7 @@ export const CareersForm: React.FC = () => {
             className={fieldShell}
             {...errorProps('email')}
           />
-          <FieldError name="email" />
+          <FieldError id={errorId('email')} error={errorFor('email')} />
         </div>
 
         <div>
@@ -182,7 +186,7 @@ export const CareersForm: React.FC = () => {
         <p className="mt-2 text-left text-sm text-ink-muted">
           PDF or Word document, up to {RESUME_MAX_LABEL}.
         </p>
-        <FieldError name="resume" />
+        <FieldError id={errorId('resume')} error={errorFor('resume')} />
       </div>
 
       {/* Honeypot. Off-screen rather than display:none — some bots skip hidden
