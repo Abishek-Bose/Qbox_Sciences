@@ -56,34 +56,30 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-hairline bg-navy-dark backdrop-blur-sm">
-      {/* h-20 (80px): the logo is a stacked lockup — wordmark above "sciences" —
-          and goes unreadable in a shorter bar. Keep in sync with the Hero's
-          `calc(100svh-5rem)`. */}
-      <div className="mx-auto grid h-20 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
+      {/* h-24 (96px): the logo is a stacked lockup, wordmark above "sciences",
+          and goes unreadable in a shorter bar. */}
+      <div className="mx-auto grid h-24 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
         {/*
-          The client's original logo is drawn for a white ground: its "sciences"
-          line and the chevron of the X are a mid blue that sinks into this navy
-          bar. So it sits on a white plate here rather than being recoloured —
-          the lockup stays exactly as supplied, and it is the brightest thing
-          in the bar.
+          Transparent cut-out of the client's logo (white ground removed, colours
+          unchanged), so it sits directly on the navy bar.
         */}
         <Link
           href="/"
-          aria-label="Qbox Sciences – home"
-          className="inline-flex items-center rounded-card bg-white px-3 py-1.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5]"
+          aria-label="Qbox Sciences home"
+          className="inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5]"
         >
           {/*
-            Declared at ~2x the rendered size (it displays about 132x52 via
-            h-13), keeping the source's 717:282 ratio. Declaring far more than
+            Declared at ~2x the rendered size (it displays about 183x72 via
+            h-18), keeping the source's 717:282 ratio. Declaring far more than
             that makes Next generate a needlessly wide file for a small logo.
           */}
           <Image
-            src="/images/logo-original.png"
+            src="/images/logo-transparent.png"
             alt="Qbox Sciences"
-            width={285}
-            height={112}
+            width={366}
+            height={144}
             priority
-            className="h-13 w-auto"
+            className="h-18 w-auto"
           />
         </Link>
 
@@ -95,17 +91,12 @@ export const Navbar = () => {
 
               return (
                 <li key={href}>
-                  {/* White at semibold for the resting links, cyan and bold for
-                      the current page: the client asked for the nav to read
-                      brighter and bolder than all-cyan at regular weight. */}
+                  {/* Bold and pure white at every state; the current page is marked
+                      by the cyan underline. */}
                   <Link
                     href={href}
                     aria-current={active ? 'page' : undefined}
-                    className={`relative block py-1 text-base transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5] ${
-                      active
-                        ? 'font-bold text-[#6FDBF5]'
-                        : 'font-semibold text-white hover:text-[#6FDBF5]'
-                    } after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:bg-[#6FDBF5] after:transition-transform ${
+                    className={`relative block py-1 text-base transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6FDBF5] font-bold text-white after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-center after:bg-[#6FDBF5] after:transition-transform ${
                       active ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
                     }`}
                   >
@@ -171,8 +162,8 @@ export const Navbar = () => {
                     aria-current={active ? 'page' : undefined}
                     className={`block border-l-2 py-3 pl-4 text-base transition-colors ${
                       active
-                        ? 'border-[#6FDBF5] bg-white/5 font-bold text-[#6FDBF5]'
-                        : 'border-transparent font-semibold text-white hover:border-[#6FDBF5] hover:text-[#6FDBF5]'
+                        ? 'border-[#6FDBF5] bg-white/5 font-bold text-white'
+                        : 'border-transparent font-bold text-white hover:border-[#6FDBF5]'
                     }`}
                   >
                     {label}
