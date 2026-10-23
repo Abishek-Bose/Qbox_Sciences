@@ -4,6 +4,7 @@ import React from 'react'
 
 import { MailIcon, YouTubeIcon } from '@/components/icons'
 import { Reveal } from '@/components/motion/Reveal'
+import { VisitorCounter } from '@/components/VisitorCounter'
 import { COMPANY } from '@/lib/site'
 
 type FooterColumn = {
@@ -143,9 +144,13 @@ export const Footer = () => {
           </Reveal>
         </div>
 
+        <div className="mt-12">
+          <VisitorCounter />
+        </div>
+
         {/* column-reverse on mobile so the icons sit above the legal line rather
             than being stranded at the very bottom of the page. */}
-        <div className="mt-16 flex flex-col-reverse items-center gap-6 border-t border-hairline pt-8 sm:flex-row sm:justify-between">
+        <div className="mt-8 flex flex-col-reverse items-center gap-6 border-t border-hairline pt-8 sm:flex-row sm:justify-between">
           <p className="text-center text-sm font-semibold text-ink sm:text-left">
             © {year} Qbox Sciences. All rights reserved. {STRAPLINE}
           </p>
