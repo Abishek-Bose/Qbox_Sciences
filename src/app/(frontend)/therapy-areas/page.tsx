@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { DropletIcon, FlaskIcon, LeafIcon, MonitorIcon, SparkIcon } from '@/components/icons'
+import { FlaskIcon, LeafIcon } from '@/components/icons'
 import { PageHero } from '@/components/PageHero'
+import { ProductTables } from '@/components/ProductTables'
 import { TherapySection } from '@/components/TherapySection'
 import { viewerHref } from '@/lib/site'
 
@@ -28,7 +29,7 @@ export default function TherapyAreasPage() {
         }}
       />
 
-      {/* The mark alternates down the page: hero right, then left, right, left. */}
+      {/* The mark alternates down the page: hero right, then left, right. */}
       <TherapySection
         watermark="left"
         icon={<FlaskIcon className="size-5" />}
@@ -61,44 +62,10 @@ export default function TherapyAreasPage() {
         }}
       />
 
+      {/* Bands: wash hero, white Immune Modulation, wash Wellness. */}
       <TherapySection
         watermark="right"
         tinted
-        mediaSide="left"
-        cardsWithCopy
-        icon={<SparkIcon className="size-5" />}
-        title="Critical Care Medicine"
-        media={{
-          src: '/images/therapy_areas/therapy_room.png',
-          alt: 'An intensive care room with a bed surrounded by monitoring and ventilation equipment',
-          overlay: {
-            eyebrow: 'Intensive Care Solutions',
-            title: 'Acute Organ Support',
-            body: 'Advanced pharmacotherapy designed for bedside intervention in sepsis and cardiovascular collapse.',
-          },
-        }}
-        cards={[
-          {
-            icon: <MonitorIcon className="size-5" />,
-            title: 'Hemodynamic Stability',
-            body: 'Rapid acting formulations to manage vascular tone in critical scenarios.',
-          },
-          {
-            icon: <DropletIcon className="size-5" />,
-            title: 'Respiratory Support',
-            body: 'Small molecule solutions for improving oxygenation efficiency.',
-          },
-        ]}
-        quote={{
-          text: 'Medicine is learned by the bedside and not in the classroom.',
-          // Attribution checked: the line is Sir William Osler's.
-          author: 'Sir William Osler',
-        }}
-      />
-
-      {/* Bands: wash hero, white Immune Modulation, wash Critical Care, white Wellness. */}
-      <TherapySection
-        watermark="left"
         icon={<LeafIcon className="size-5" />}
         title="Wellness"
         body="We envision a future where wellness is an integral part of healthcare, not an afterthought. At Qbox Sciences, we curate innovative, science driven solutions that help individuals optimize health, enhance resilience, and improve quality of life. By bridging global research with practical healthcare needs, we strive to empower healthier living across every stage of the wellness journey."
@@ -108,6 +75,8 @@ export default function TherapyAreasPage() {
           alt: 'Softgel capsules spilling from a glass bottle beside fresh green leaves and dried botanicals',
         }}
       />
+
+      <ProductTables />
     </>
   )
 }
