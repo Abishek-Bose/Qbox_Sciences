@@ -22,7 +22,7 @@ export const AnnouncementList: React.FC<AnnouncementListProps> = ({
     <section className="relative overflow-hidden bg-surface py-20 lg:py-24">
       <Watermark side={watermark} />
 
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-navy">{title}</h2>
         </Reveal>
