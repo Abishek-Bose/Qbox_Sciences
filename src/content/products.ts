@@ -20,7 +20,7 @@ const injection = (brand: string, drug: string): Product => ({ brand, drug, form
 
 export const PRODUCT_GROUPS: ProductGroup[] = [
   {
-    title: 'Anti Infectives',
+    title: 'Critical Care',
     products: [
       injection('Ampilix', 'Ampicillin + Sulbactam 1.5 g & 3 g'),
       injection('Aztronov', 'Aztreonem 1 g & 2 g'),
@@ -32,14 +32,10 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       injection('Qmero-S', 'Meropenem 1 g + Sulbactam 500 mg'),
       injection('Renomyx', 'Polymyxin B 5 Lac IU & 7.5 Lac IU'),
       injection('Repletz', 'Cefepime + Tazobactam 2.5 g'),
+      injection('Rocubox', 'Rocuronium 50 mg/5 ml'),
       injection('Sepshield', 'Ceftriaxone + Sulbactam + EDTA 1.5 g'),
       injection('Sulbastar', 'Sulbactam 2 g'),
     ],
-  },
-  {
-    // The note boxed Rocubox on its own, so it is kept apart from the anti infectives.
-    title: 'Critical Care',
-    products: [injection('Rocubox', 'Rocuronium 50 mg/5 ml')],
   },
   {
     title: 'Immune Modulation',
