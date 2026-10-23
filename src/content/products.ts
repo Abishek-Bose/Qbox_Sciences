@@ -23,6 +23,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     title: 'Critical Care',
     products: [
       injection('Ampilix', 'Ampicillin + Sulbactam 1.5 g & 3 g'),
+      injection('Avidime', 'Ceftazidime + Avibactam 2.5 g & 1.25 g'),
       injection('Aztronov', 'Aztreonem 1 g & 2 g'),
       injection('Aztronov-A', 'Aztreonem 1.5 g + Avibactam 0.5 g'),
       injection('Cazent', 'Cefepime 2 g + Sulbactam 2 g'),
