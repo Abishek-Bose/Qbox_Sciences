@@ -18,7 +18,7 @@ export default function TherapyAreasPage() {
       <PageHero
         tinted
         eyebrow="Medical Innovation"
-        title="Critical Care."
+        title="Critical Care"
         description={[
           'At Qbox, our Critical Care portfolio is strategically focused on addressing India’s most pressing ICU challenges, including sepsis, trauma and acute organ failure. Our assets are being developed specifically for the realities of Indian healthcare, combining clinical efficiency with affordability and accessibility.',
           'We deal in a broad portfolio of essential sterile injectables and critical care antibiotics.',
